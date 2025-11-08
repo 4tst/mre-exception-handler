@@ -10,7 +10,7 @@
   <script>
     window.onload = async () => {
       const apiUrl = `http://127.0.0.1:8083`;
-      const apis = ["subApp/whoami", "queryAppConfig"].map(
+      const apis = ["user/whoami", "queryAppConfig"].map(
         (path) => `${apiUrl}/${path}`
       );
       await Promise.all(
