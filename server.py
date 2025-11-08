@@ -5,8 +5,6 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from src.user import user_router
-
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -19,8 +17,6 @@ app.add_middleware(
 
 log = logging.getLogger("app")
 
-app.include_router(user_router)
-
 
 @app.exception_handler(Exception)
 async def exception_handler(request: Request, ex: Exception):
@@ -28,7 +24,6 @@ async def exception_handler(request: Request, ex: Exception):
     return JSONResponse(content=dict(success=False))
 
 
-@app.exception_handler(AssertionError)
 # @app.exception_handler(ValueError)
 async def exception_handler(request: Request, ex: Exception):
     log.error("Unhandled exception: %s", ex)
@@ -37,7 +32,7 @@ async def exception_handler(request: Request, ex: Exception):
 
 @app.post("/queryAppConfig")
 async def query_app_config():
-    assert True == False
+    raise ValueError("no app config found")
 
 
 if __name__ == "__main__":
