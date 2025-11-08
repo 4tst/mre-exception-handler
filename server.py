@@ -25,7 +25,7 @@ async def exception_handler(request: Request, ex: Exception):
 
 
 # @app.exception_handler(ValueError)
-async def exception_handler(request: Request, ex: Exception):
+async def value_error_handler(request: Request, ex: ValueError):
     log.error("Unhandled exception: %s", ex)
     return JSONResponse(content=dict(success=False))
 
